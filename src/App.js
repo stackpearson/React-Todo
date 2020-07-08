@@ -41,6 +41,28 @@ class App extends React.Component {
     });
   };
 
+  toggleCompleted = itemId => {
+    this.setState({
+      toDos: this.state.toDos.map(item => {
+        if (item.id === itemId) {
+          return {
+            ...item,
+            completed: !item.completed
+          };
+        }
+        return item;
+      })
+    });
+  };
+
+  clearCompleted = () => {
+    this.setState({
+      toDos: this.state.toDos.filter(item => {
+        return !item.completed;
+      })
+    });
+  };
+
   render() {
     return (
       <>
@@ -48,7 +70,11 @@ class App extends React.Component {
         <h2>To Do List</h2>
       </div>
       <ToDoAdder addTask={this.addTask}/>
-      <ToDoList toDoItems={this.state.toDos} />
+      <ToDoList 
+        toDoItems={this.state.toDos}
+        toggleCompleted={this.toggleCompleted}
+        clearCompleted={this.clearCompleted}
+      />
       </>
     );
   }

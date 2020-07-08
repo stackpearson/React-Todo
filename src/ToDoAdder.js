@@ -23,7 +23,6 @@ class ToDoAdder extends React.Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-                form here
                 <input 
                     type='text'
                     name='task'
